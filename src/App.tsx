@@ -6,7 +6,7 @@ import { Home } from './pages/Home'
 const App = () => {
 	return (
 		<div>
-			{/* Navbar Component Mertlim Хуйлан */}
+			{/* Navbar Component Mertlim ШЛЮХА ЕБУЧАЯ ИДИ НАХУЙ*/}
 			<Navbar />
 			<Routes>
 				<Route path='/' element={<Home />} />
