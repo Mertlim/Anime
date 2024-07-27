@@ -1,3 +1,4 @@
+
 import { Movies } from '@/components/Movies'
 
 export const Home = () => {
