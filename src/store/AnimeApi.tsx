@@ -8,7 +8,7 @@ export default new class anim{
   constructor() {
     makeAutoObservable(this)
   }
-
+  // api
   async fetchAnime() {
     try {
       const response = await axios.get('https://api.jikan.moe/v4/top/anime')
