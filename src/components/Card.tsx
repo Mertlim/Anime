@@ -1,17 +1,34 @@
-import '@/styles/index.scss'
+import { SimplifiedAnimeData } from '@/shared/api/anime/types';
+import { animeStore } from '../store/AnimeApi'
+import { observer } from 'mobx-react-lite'
+import { FC, useEffect } from 'react';
 
-export const Card = () => {
+interface CardProps {
+	animes: SimplifiedAnimeData[];
+}
+
+export const Card: FC<CardProps> = observer(({ animes }) => {
+
+	const { fetchAnime } = animeStore
+	useEffect(() => {
+		fetchAnime()
+	}, []);
+
 	return (
-		<article className={`w-56 h-auto rounded-xl  cursor-pointer ${'card'}`}>
-			<img
-				src='https://anixart.net/uploads/posts/2023-07/51179.webp'
-				alt='anime'
-				className='w-full h-80 rounded-xl'
-			/>
-			<div className='text-center mt-4'>
-				<h1 className='text-md text-gray-300 font-normal'>Реинкарнация...</h1>
-				<p className='text-sm text-gray-200'>2023, 12 серий</p>
+		<article className={`h-auto rounded-xl cursor-pointer card`}>
+			<div className='flex flex-wrap justify-between'>
+				{animes.map(animeItem => (
+					<div key={animeItem.mal_id} className='p-2'>
+						<img className='h-80 w-56 rounded-xl' src={animeItem.image} alt={animeItem.title} />
+						<div className='w-52 whitespace-nowrap overflow-hidden overflow-ellipsis text-center mt-3'>
+							{animeItem.title}
+						</div>
+						<div className='text-center text-gray-200 mt-[4px]'>
+							{animeItem.year}, {animeItem.episodes} серий
+						</div>
+					</div>
+				))}
 			</div>
 		</article>
 	)
-}
+})
