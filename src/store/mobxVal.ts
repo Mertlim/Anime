@@ -1,7 +1,7 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from "mobx"
 
 class MobxVal {
-    constructor() { makeAutoObservable(this); }
+    constructor() { makeAutoObservable(this) }
 
     inputObj = {
         login: '',
@@ -15,13 +15,17 @@ class MobxVal {
 
     submitData = () => {
         this.validateData()
-        if (Object.values(this.inputObjErr).every(i => i === ''))  alert('Success')
+        if (Object.values(this.inputObjErr).every(i => i === '')) alert('Success')
     }
 
     updateInputData = (key: string, value: string) => {
         this.inputObj = {
             ...this.inputObj,
             [key]: value
+        }
+        this.inputObjErr = {
+            ...this.inputObjErr,
+            [key + 'Err']: ''
         }
     }
 
@@ -38,4 +42,4 @@ class MobxVal {
         else if (!/^[a-zA-Z0-9]+$/.test(inp.password)) inpErr.passwordErr = 'password can have only words and letters'
     }
 }
-export const mobxValInstance = new MobxVal();
+export const mobxValInstance = new MobxVal()

@@ -1,16 +1,14 @@
-import { categories } from '@/data'
+import { categories } from '@/shared/utils/constants'
+import { animeStore } from '@/store/AnimeApi'
+import { observer } from 'mobx-react-lite'
+import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Card } from './Card'
-import { observer } from 'mobx-react-lite';
-import { FC, useEffect } from 'react';
-import { animeStore } from '@/store/AnimeApi';
 
-export const Movies: FC = observer(() => {
-	const {fetchAnime, filteredAnime } = animeStore;  // Получаем отфильтрованные данные
+export const Movies = observer(() => {
+	const { fetchAnime, animes } = animeStore
 
-	useEffect(() => {
-		fetchAnime();
-	}, [fetchAnime]);
+	useEffect(() => { fetchAnime() }, [])
 
 	return (
 		<main className='mt-5 flex justify-center'>
@@ -34,7 +32,7 @@ export const Movies: FC = observer(() => {
 					</h1>
 					{/* card */}
 					<div className=''>
-						<Card animes={filteredAnime} />
+						<Card animes={animes} />
 					</div>
 				</section>
 				<div className='mt-[35px] gap-y-[10px] grid'>
